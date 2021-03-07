@@ -7,7 +7,6 @@ use App\Models\Link;
 use App\Models\Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -46,7 +45,6 @@ class LinkController extends Controller
         }
 
         if ($linkModel->is_commercial) {
-
             $images = Storage::disk('public')->files('commercial');
             $image = Arr::random($images);
 
@@ -88,6 +86,5 @@ class LinkController extends Controller
                 'link' => $link,
             ]);
         }
-
     }
 }

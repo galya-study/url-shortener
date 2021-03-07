@@ -29,7 +29,9 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">IP-адрес пользователя</th>
+            @if ($link->is_commercial_as_string == 'да')
             <th scope="col">Ссылка на изображение</th>
+            @endif
             <th scope="col">Дата обращения</th>
         </tr>
         </thead>
@@ -38,7 +40,9 @@
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $redirect->ip_address }}</td>
+            @if ($link->is_commercial_as_string == 'да')
             <td><a href="{{ $redirect->image_url }}" target="_blank">{{ $redirect->image_url }}</a></td>
+            @endif
             <td>{{ $redirect->created_at->format('d.m.Y H:i') }}</td>
         </tr>
         @endforeach
