@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLinkTable extends Migration
+class CreateRedirectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateLinkTable extends Migration
      */
     public function up()
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('redirects', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->string('link');
-            $table->dateTime('expires_at');
-            $table->boolean('is_commercial');
-            $table->string('stat_link');
+            $table->bigInteger('link_id');
+            $table->string('ip_address');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateLinkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('redirects');
     }
 }

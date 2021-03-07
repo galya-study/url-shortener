@@ -6,7 +6,7 @@ use App\Rules\DateTimeAfterNow;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class LinkRequest extends FormRequest
+class SaveLinkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,9 +27,10 @@ class LinkRequest extends FormRequest
     {
         return [
             'url' => ['required', 'url'],
-            'link' => [Rule::unique('links')],
+            'link' => ['nullable', Rule::unique('links'), 'regex:/^[0-9a-zA-Z_\-]+$/'],
             'expires_at.date' => ['nullable', 'date', 'after_or_equal:today'],
             'expires_at' => [new DateTimeAfterNow()],
+            'is_commercial' => ['required', 'boolean'],
         ];
     }
 
@@ -39,6 +40,7 @@ class LinkRequest extends FormRequest
             'url.required' => 'Поле URL обязательно для заполнения.',
             'url.url' => 'Поле URL должно содержать корректный URL-адрес.',
             'link.unique' => 'Введенный текст для короткой ссылки уже существует.',
+            'link.regex' => 'Текст для короткой ссылки может содержать только латинские буквы, цифры и символы: "-" и "_".',
             'expires_at.date.date' => 'Неверный формат введенной даты.',
             'expires_at.date.after_or_equal' => 'Введенная дата должна быть позже, чем сейчас',
         ];

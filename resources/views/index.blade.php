@@ -1,11 +1,11 @@
 @extends('common.app')
 
 @section('title')
-    Главная страница
+    Главная
 @endsection
 
 @section('body')
-    <form action="{{route('createShortLink')}}" method="post">
+    <form action="{{ route('save') }}" method="post">
         @csrf
 
         @include('errors')

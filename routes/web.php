@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinkController;
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', [LinkController::class, 'index'])->name('index');
 
-Route::get('/stat', function () {
-    return view('stat');
-})->name('stat');
+Route::get('/stat/{statLink?}', [LinkController::class, 'stat'])->name('stat');
 
-Route::post('/createShortLink', [LinkController::class, 'submit'])->name('createShortLink');
+Route::post('/save', [LinkController::class, 'save'])->name('save');
+
+Route::get('/{link}', [LinkController::class, 'redirect'])->name('redirect');
