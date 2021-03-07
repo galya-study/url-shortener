@@ -46,6 +46,11 @@ class LinkController extends Controller
 
         if ($linkModel->is_commercial) {
             $images = Storage::disk('public')->files('commercial');
+            $images = array_filter($images, function ($image) {
+                $ext = pathinfo($image, PATHINFO_EXTENSION);
+                return in_array($ext, ['jpg', 'png', 'jpeg']);
+            });
+            
             $image = Arr::random($images);
 
             $response = view('image', [

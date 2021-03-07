@@ -6,4 +6,4 @@
 2. `composer install`
 3. `php artisan migrate`
 4. `php artisan storage:link`
-5. Добавить изображения в папку `storage/app/public/commercial/`. Изображение при переходе по коммерческой ссылке выбирается случайно.
+5. Добавить изображения (jpg, png) в папку `storage/app/public/commercial/`. Изображение при переходе по коммерческой ссылке выбирается случайно из данной папки. 
