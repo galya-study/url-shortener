@@ -1,7 +1,7 @@
 @extends('common.app')
 
 @section('title')
-    Статистика по ссылке
+    Общая статистика
 @endsection
 
 @section('body')
